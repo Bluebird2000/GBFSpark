@@ -1,3 +1,21 @@
 {
-  "extends": "@react-native/typescript-config"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "moduleResolution": "bundler",
+    "baseUrl": "src/",
+    "paths": {
+      "@/*": ["*"],
+      "@src/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@template/*": ["./src/components/template/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "test/*": ["./test/*"],
+      "underscores": ["./node_modules/lodash"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "react-native.config.jw"]
 }
