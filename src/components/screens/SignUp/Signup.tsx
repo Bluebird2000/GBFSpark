@@ -12,7 +12,7 @@ interface SignUpProps {
   password: string;
   onChangePassword: (password: string) => void;
   onSignUp: () => void;
-  isLoginDisabled: boolean;
+  isSignupDisabled: boolean;
 }
 
 const SignUp: React.FC<SignUpProps> = ({
@@ -22,7 +22,7 @@ const SignUp: React.FC<SignUpProps> = ({
   password,
   onChangePassword,
   onSignUp,
-  isLoginDisabled,
+  isSignupDisabled,
 }) => {
   return (
     <ParentScrollView title="Sign In" description="Sign in to your account">
@@ -52,7 +52,7 @@ const SignUp: React.FC<SignUpProps> = ({
         <GBFSButton
           text={isLoading ? 'Signing In...' : 'Sign In'}
           onPress={onSignUp}
-          disabled={isLoginDisabled}
+          disabled={isSignupDisabled}
           containerStyle={{ width: '100%' }}
         />
       </View>
