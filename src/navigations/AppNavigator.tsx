@@ -18,9 +18,11 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <AppStack.Navigator>
-        <AppStack.Screen name="Main" options={{ headerShown: false }}>
-          {props => <LoggedInComponent {...props} />}
-        </AppStack.Screen>
+        <AppStack.Screen
+          name="Auth"
+          component={AuthNavigator}
+          options={{ headerShown: false }}
+        />
         {/* {isLoggedIn ? (
           <AppStack.Screen name="Main" options={{ headerShown: false }}>
             {props => <LoggedInComponent {...props} />}

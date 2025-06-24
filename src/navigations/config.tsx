@@ -2,10 +2,8 @@ import colours from "@constants/colours";
 
 export const headerOptions = (
   colourScheme = 'light',
-  leftButton = {enabled: true},
-  rightButton = {},
 ) => ({
-  title: '', // for Android (and iOS)
+  title: '',
   headerShadowVisible: false,
   headerStyle: {
     backgroundColor:

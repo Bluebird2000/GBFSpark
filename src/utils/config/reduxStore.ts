@@ -10,6 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import userReducer from './userReducer';
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +19,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  user: {},
+  user: userReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

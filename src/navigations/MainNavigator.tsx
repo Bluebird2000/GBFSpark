@@ -10,7 +10,7 @@ const MainStack = createNativeStackNavigator();
 export default function MainNavigator() {
   const colourScheme = useColorTheme();
 
-  const DEFAULT_HEADER_OPTIONS = headerOptions(colourScheme, { enabled: true });
+  const DEFAULT_HEADER_OPTIONS = headerOptions(colourScheme);
   return (
     <MainStack.Navigator initialRouteName="MainTab">
       <MainStack.Screen

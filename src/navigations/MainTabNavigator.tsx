@@ -8,14 +8,13 @@ import useColorTheme from '@helpers/hooks/useColorTheme';
 import { headerOptions } from './config';
 import { font } from '@constants/palette';
 import AuthNavigator from './AuthNavigator';
+import Dashboard from '@components/screens/Dashboard/DashboardContainer';
 
 const Tab = createBottomTabNavigator();
 
 export default function MainTabNavigator() {
   const colourScheme = useColorTheme();
-  const DEFAULT_HEADER_OPTIONS = headerOptions(colourScheme, {
-    enabled: false,
-  });
+  const DEFAULT_HEADER_OPTIONS = headerOptions(colourScheme);
 
   const centerHeaderOptions = useCallback(
     (title: string) => ({
@@ -38,17 +37,17 @@ export default function MainTabNavigator() {
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
         name="Home"
-        component= {AuthNavigator}
+        component= {Dashboard}
         options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Wallet"
-        component={AuthNavigator}
+        component={Dashboard}
         options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Account"
-        component={AuthNavigator}
+        component={Dashboard}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>
