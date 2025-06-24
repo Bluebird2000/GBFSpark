@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, Pressable, View, TextStyle} from 'react-native';
+import {TextInput, Pressable, View, TextStyle, Dimensions} from 'react-native';
 import If from '@components/atoms/If';
 import {font} from '@constants/palette';
 import colours from '@constants/colours';
@@ -7,6 +7,8 @@ import {InputFieldProps} from '@helpers/common';
 import {horizontalScale, verticalScale} from '@constants/scale';
 import useColorTheme from '@helpers/hooks/useColorTheme';
 import { textInputStyles } from '@constants/styles';
+
+const screenWidth = Dimensions.get('window').width;
 
 function InputField({
   borderColor,
@@ -19,13 +21,13 @@ function InputField({
   leftComponent,
   isError,
   leftContainerStyle,
-  width = horizontalScale(327),
-  height = verticalScale(50),
+  width = screenWidth / 1.1,
+  height = verticalScale(48),
   ...props
 }: InputFieldProps): React.JSX.Element {
   const colourScheme = useColorTheme();
   const COLOUR_SCHEME_VALUE_COLOUR =
-    colourScheme === 'dark' ? colours.neutral900 : colours.activeBlue400;
+    colourScheme === 'dark' ? colours.neutral900 : colours.darkBase400;
   const COLOUR_SCHEME_PLACEHOLDER_COLOUR =
     colourScheme === 'dark' ? colours.neutral900 : colours.darkBase200;
   const TEXT_STYLE = font(COLOUR_SCHEME_VALUE_COLOUR).bodyLarge;

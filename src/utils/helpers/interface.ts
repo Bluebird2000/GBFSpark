@@ -1,5 +1,4 @@
 import {ViewPropStyle} from './common';
-
 export interface ParentScrollViewProps {
   children: React.ReactNode;
   title?: string;
@@ -16,7 +15,6 @@ export interface ParentScrollViewProps {
   statusBarStyle?: 'light-content' | 'dark-content';
   screenTitleProps?: Record<string, unknown>;
 }
-
 export interface ParentViewProps {
   children: React.ReactNode;
   title?: string;
@@ -31,7 +29,6 @@ export interface ParentViewProps {
   statusBarStyle?: 'light-content' | 'dark-content';
   screenTitleProps?: Record<string, unknown>;
 }
-
 export interface ScreenTitleProps {
   title?: string;
   description?: string;
@@ -41,7 +38,6 @@ export interface ScreenTitleProps {
   horizontalLine?: boolean;
   showBackButton?: boolean;
 }
-
 export interface GBFSInputProps {
   placeholder?: string;
   label?: string;
@@ -52,4 +48,29 @@ export interface GBFSInputProps {
   inputTextStyle?: object;
   children?: React.ReactNode;
   [key: string]: unknown;
+}
+export interface SignUpProps {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  isLoading: boolean;
+  isSignupDisabled: boolean;
+  onChangeFirstName: (text: string) => void;
+  onChangeLastName: (text: string) => void;
+  onChangeEmail: (text: string) => void;
+  onChangePassword: (text: string) => void;
+  onSignUp: () => void;
+  onPressHintMessage: () => void;
+}
+
+export interface LoginProps {
+  email: string;
+  onChangeEmail: (email: string) => void;
+  isLoading: boolean;
+  password: string;
+  onChangePassword: (password: string) => void;
+  onLogin: () => void;
+  isLoginDisabled: boolean;
+  onPressHintMessage: () => void;
 }

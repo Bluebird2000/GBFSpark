@@ -1,35 +1,53 @@
 import React from 'react';
-import { View } from 'react-native';
 import GBFSButton from '@components/molecules/GBFSButton';
 import ParentScrollView from '@components/templates/ParentScrollView';
 import PasswordInput from '@components/molecules/PasswordInput';
 import EmailInput from '@components/molecules/EmailInput';
-
-interface SignUpProps {
-  email: string;
-  onChangeEmail: (email: string) => void;
-  isLoading: boolean;
-  password: string;
-  onChangePassword: (password: string) => void;
-  onSignUp: () => void;
-  isSignupDisabled: boolean;
-}
+import HintMessage from '@components/molecules/HintMessage';
+import { horizontalScale, verticalScale } from '@constants/scale';
+import { authStyles } from '@constants/styles';
+import { SignUpProps } from '@helpers/interface';
+import GBFSInput from '@components/molecules/GBFSInput';
+import colours from '@constants/colours';
 
 const SignUp: React.FC<SignUpProps> = ({
+  firstname,
+  lastname,
   email,
+  onChangeFirstName,
+  onChangeLastName,
   onChangeEmail,
   isLoading,
   password,
   onChangePassword,
   onSignUp,
   isSignupDisabled,
+  onPressHintMessage,
 }) => {
   return (
-    <ParentScrollView title="Sign Up" description="Create a new account" containerStyle={{ marginTop: 24 }}>
+    <ParentScrollView
+      title="Sign Up"
+      description="Create a new account"
+      containerStyle={{ marginTop: 24 }}
+    >
+      <GBFSInput
+        placeholder="Enter your firstname"
+        label="First name"
+        value={firstname}
+        onChangeText={onChangeFirstName}
+        containerStyle={{ marginTop: verticalScale(24) }}
+        autoFocus
+      />
+      <GBFSInput
+        placeholder="Enter your lastname"
+        label="Last name"
+        value={lastname}
+        onChangeText={onChangeLastName}
+        containerStyle={{ marginTop: verticalScale(24) }}
+      />
       <EmailInput
         email={email}
         onChangeEmail={onChangeEmail}
-        autoFocus
         returnKeyType="next"
         editable={!isLoading}
       />
@@ -43,10 +61,24 @@ const SignUp: React.FC<SignUpProps> = ({
         onSubmitEditing={onSignUp}
       />
       <GBFSButton
-        text={isLoading ? 'Signing In...' : 'Sign In'}
+        text={isLoading ? 'Signing Up...' : 'Sign Up'}
         onPress={onSignUp}
         disabled={isSignupDisabled}
-        containerStyle={{ width: '100%', marginTop: 24, marginBottom: 24 }}
+        containerStyle={{
+          width: '100%',
+          marginTop: 14,
+          backgroundColor: isSignupDisabled
+            ? colours.activeBlue200
+            : colours.activeBlue400,
+        }}
+      />
+      <HintMessage
+        onPress={onPressHintMessage}
+        hintText="Already have an account?"
+        hintTextStyle={{ marginRight: horizontalScale(4) }}
+        linkText="Sign In"
+        linkTextStyle={{ textDecorationLine: 'underline' }}
+        containerStyle={authStyles.hintContainer}
       />
     </ParentScrollView>
   );

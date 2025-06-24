@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import colours from '../../utils/constants/colours';
 import { buttonStyles } from '../../utils/constants/styles';
 import useColorTheme from '@helpers/hooks/useColorTheme';
-import H5 from '@components/atoms/text/h5';
+import H6 from '@components/atoms/text/h6';
 
 export default function GBFSButton({
   onPress = () => {},
@@ -21,9 +21,9 @@ export default function GBFSButton({
       style={[container, containerStyle]}
       disabled={disabled}
     >
-      <H5 colour={colours.neutral200} textStyle={textStyle}>
+      <H6 colour={colours.neutral200} textStyle={textStyle}>
         {text}
-      </H5>
+      </H6>
     </TouchableOpacity>
   );
 }

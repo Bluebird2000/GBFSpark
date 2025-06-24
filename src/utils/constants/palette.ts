@@ -56,6 +56,11 @@ export const font = (colour = colours.neutral900) => ({
     fontSize: horizontalScale(20),
     lineHeight: horizontalScale(36),
   },
+  h6: {
+    ...fontStyle(colour).bold,
+    fontSize: horizontalScale(18),
+    lineHeight: horizontalScale(32),
+  },
   subTitle: {
     ...fontStyle(colour).regular,
     fontSize: horizontalScale(20),

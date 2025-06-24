@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React from 'react';
 import { View, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { horizontalScale, verticalScale } from '@constants/scale';
@@ -8,6 +8,7 @@ import colours from '@constants/colours';
 import GBFSButton from '@components/molecules/GBFSButton';
 import { welcomeStyles } from '@constants/styles';
 import images from '@assets/images/images';
+import H6 from '@components/atoms/text/h6';
 
 type WelcomeProps = {
   onPressPrimaryButton: () => void;
@@ -21,10 +22,14 @@ export default function Welcome({
   return (
     <ParentView
       noPadding
-      backgroundColour={colours.neutral400}
+      backgroundColour={colours.neutral100}
       statusBarStyle="light-content"
       containerStyle={{ paddingTop: safeAreaInsets.top }}
     >
+      <Image
+        source={images.gbsf}
+        style={{ width: '100%', height: '60%' }}
+      />
       <View style={welcomeStyles.container}>
         <View style={welcomeStyles.innerContainer}>
           <View style={welcomeStyles.topContainer}>
@@ -36,11 +41,13 @@ export default function Welcome({
                 resizeMode: 'contain',
               }}
             />
-            <BodyMedium colour={colours.darkBase300}>Sign up to join</BodyMedium>
+            <H6 colour={colours.darkBase300}>
+              Are you new to Umob?
+            </H6>
           </View>
           <View style={welcomeStyles.buttonsContainer}>
             <GBFSButton
-              text="Sign up with Email"
+              text="Create Account"
               onPress={onPressPrimaryButton}
             />
           </View>

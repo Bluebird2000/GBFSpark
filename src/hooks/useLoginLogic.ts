@@ -1,21 +1,25 @@
-import { useCallback, useEffect, useState, useMemo, useRef } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+  useRef,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { login as signIn } from 'api/authentication';
+import { Dispatch } from 'redux';
 
 import { RootState } from '../utils/config/reduxStore';
-import { Dispatch } from 'redux';
 import { handleError, isEmailValid } from '@helpers/helpers';
 
 type LoginState = {
   email: string;
-  firstName: string;
   password: string;
   isLoading: boolean;
   messageType: 'error' | 'success' | string;
   countryBottomSheetSnap?: string;
 };
 
-export default function useLoginLogic(isLoginViaPhoneNumberFlow: boolean) {
+export default function useLoginLogic() {
   const dispatch: Dispatch = useDispatch();
   const { email: reduxEmail, firstName: reduxFirstName } = useSelector(
     (reduxState: RootState) => reduxState.user,
@@ -23,7 +27,6 @@ export default function useLoginLogic(isLoginViaPhoneNumberFlow: boolean) {
 
   const initialState: LoginState = {
     email: reduxEmail || '',
-    firstName: reduxFirstName || '',
     password: '',
     isLoading: false,
     messageType: 'error',
@@ -32,33 +35,41 @@ export default function useLoginLogic(isLoginViaPhoneNumberFlow: boolean) {
   const isMounted = useRef<boolean>(false);
   const [state, setState] = useState<LoginState>(initialState);
 
-  const isLoginDisabled = useMemo(() => {
-    if (isLoginViaPhoneNumberFlow) {
-      return state.isLoading || !state.password;
-    } else {
-      return state.isLoading || !isEmailValid(state.email) || !state.password;
-    }
-  }, [isLoginViaPhoneNumberFlow, state.isLoading, state.password, state.email]);
+  /** Disable the button if:  
+    • a request is in flight  
+    • e-mail is invalid  
+    • password is empty */
+  const isLoginDisabled = useMemo(
+    () =>
+      state.isLoading ||
+      !isEmailValid(state.email) ||
+      !state.password,
+    [state.isLoading, state.email, state.password],
+  );
 
+  /** Safe state-setter that ignores calls after unmount */
   function setStateIfMounted(obj: Partial<LoginState>) {
     if (isMounted.current) {
-      setState(prevState => ({ ...prevState, ...obj }));
+      setState(prev => ({ ...prev, ...obj }));
     }
   }
 
-  const onChangeEmail = useCallback((newEmail: string) => {
-    setStateIfMounted({ email: newEmail });
-  }, []);
+  const onChangeEmail = useCallback(
+    (newEmail: string) => setStateIfMounted({ email: newEmail }),
+    [],
+  );
 
-  const onChangePassword = useCallback((newPassword: string) => {
-    setStateIfMounted({ password: newPassword });
-  }, []);
+  const onChangePassword = useCallback(
+    (newPassword: string) => setStateIfMounted({ password: newPassword }),
+    [],
+  );
 
+  /** Handle a successful login response */
   const handleLoginSuccess = useCallback(
     async ({ data }: any) => {
       const { access_token, email, firstName, lastName } = data;
 
-      let loginData: any = {
+      const loginData = {
         access_token,
         isLoggedIn: true,
         email,
@@ -70,16 +81,15 @@ export default function useLoginLogic(isLoginViaPhoneNumberFlow: boolean) {
       // dispatch(updateProfile(loginData));
       // dispatch(updateProfile({ isFirstLogin: false }));
     },
-    [state.password, isLoginViaPhoneNumberFlow, reduxEmail, dispatch],
+    [state.password, dispatch],
   );
 
+  /** Toggle loading flag (used as a simple mock for now) */
   const onLogin = useCallback(() => {
-    setState(prevState => ({
-      ...prevState,
-      isLoading: !prevState.isLoading,
-    }));
+    setState(prev => ({ ...prev, isLoading: !prev.isLoading }));
   }, []);
 
+  /* Mark mounted / unmounted */
   useEffect(() => {
     isMounted.current = true;
     return () => {
@@ -87,19 +97,14 @@ export default function useLoginLogic(isLoginViaPhoneNumberFlow: boolean) {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (state.isLoading) {
-  //     signIn({
-  //       username: state.email,
-  //       password: state.password,
-  //     })
-  //       .then(handleLoginSuccess)
-  //       .catch((e: unknown) => {
-  //         handleError(e as Error);
-  //       })
-  //       .finally(onLogin);
-  //   }
-  // }, [state.email, state.isLoading, state.password]);
+  useEffect(() => {
+    if (state.isLoading) {
+      // signIn({ username: state.email, password: state.password })
+      //   .then(handleLoginSuccess)
+      //   .catch((e) => handleError(e as Error))
+      //   .finally(onLogin);
+    }
+  }, [state.email, state.password, state.isLoading]);
 
   return {
     state,

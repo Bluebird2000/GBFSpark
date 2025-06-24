@@ -37,12 +37,10 @@ export const screenTitleStyles = (
     title: {
       textTransform: 'none',
       marginBottom: verticalScale(4),
-      color:
-        colourScheme === 'dark' ? colours.activeBlue400 : colours.darkBase400,
+      color: colours.darkBase400,
     },
     description: {
-      color:
-        colourScheme === 'dark' ? colours.activeBlue400 : colours.darkBase200,
+      color: colours.darkBase200,
     },
     horizontalLineStyles: {
       marginTop: verticalScale(16),
@@ -55,8 +53,7 @@ export const buttonStyles = (
 ): StyleSheet.NamedStyles<{ [key: string]: StyleProp<unknown> }> =>
   StyleSheet.create({
     container: {
-      backgroundColor:
-        colourScheme === 'dark' ? colours.activeBlue400 : colours.activeBlue400,
+      backgroundColor: colours.activeBlue400,
       width: horizontalScale(width) || '100%',
       height: verticalScale(48),
       borderRadius: 8,
@@ -141,4 +138,23 @@ export const passwordStyles = StyleSheet.create({
     left: horizontalScale(290),
     top: verticalScale(-32),
   },
+});
+
+export const hintMessageStyles = StyleSheet.create({
+  parent: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    textAlign: 'center',
+  },
+});
+
+export const authStyles = StyleSheet.create({
+  hintMessage: {
+    marginBottom: verticalScale(24),
+  },
+  hintContainer: {
+    marginTop: verticalScale(24),
+    justifyContent: 'center',
+  },
+  mb0: {marginBottom: 0},
 });

@@ -4,16 +4,11 @@ import GBFSButton from '@components/molecules/GBFSButton';
 import ParentScrollView from '@components/templates/ParentScrollView';
 import PasswordInput from '@components/molecules/PasswordInput';
 import EmailInput from '@components/molecules/EmailInput';
-
-interface LoginProps {
-  email: string;
-  onChangeEmail: (email: string) => void;
-  isLoading: boolean;
-  password: string;
-  onChangePassword: (password: string) => void;
-  onLogin: () => void;
-  isLoginDisabled: boolean;
-}
+import HintMessage from '@components/molecules/HintMessage';
+import { horizontalScale } from '@constants/scale';
+import { authStyles } from '@constants/styles';
+import { LoginProps } from '@helpers/interface';
+import colours from '@constants/colours';
 
 const Login: React.FC<LoginProps> = ({
   email,
@@ -23,9 +18,14 @@ const Login: React.FC<LoginProps> = ({
   onChangePassword,
   onLogin,
   isLoginDisabled,
+  onPressHintMessage
 }) => {
   return (
-    <ParentScrollView title="Sign In" description="Sign in to your account" containerStyle={{ padding: 20 }}>
+    <ParentScrollView
+      title="Sign In"
+      description="Sign in to your account"
+      containerStyle={{ marginTop: 24 }}
+    >
       <EmailInput
         email={email}
         onChangeEmail={onChangeEmail}
@@ -53,9 +53,24 @@ const Login: React.FC<LoginProps> = ({
           text={isLoading ? 'Signing In...' : 'Sign In'}
           onPress={onLogin}
           disabled={isLoginDisabled}
-          containerStyle={{ width: '100%' }}
+           containerStyle={{
+          width: '100%',
+          marginTop: 14,
+          backgroundColor: isLoginDisabled
+            ? colours.activeBlue200
+            : colours.activeBlue400,
+        }}
         />
       </View>
+
+      <HintMessage
+        onPress={onPressHintMessage}
+        hintText="New to Umob?"
+        hintTextStyle={{ marginRight: horizontalScale(4) }}
+        linkText="Sign Up"
+        linkTextStyle={{ textDecorationLine: 'underline' }}
+        containerStyle={authStyles.hintContainer}
+      />
     </ParentScrollView>
   );
 };

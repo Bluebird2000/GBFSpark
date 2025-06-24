@@ -24,7 +24,7 @@ export default function GBFSInput({
   const styles = textInputStyles(colourScheme);
 
   return (
-    <View style={{ paddingLeft: horizontalScale(8), ...containerStyle }}>
+    <View style={{ paddingLeft: horizontalScale(2), ...containerStyle }}>
       <View style={styles.labelContainer}>
         <View style={styles.labelHeading}>
           <If condition={label}>

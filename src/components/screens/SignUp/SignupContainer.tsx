@@ -1,30 +1,36 @@
-import React, {useState} from 'react';
+import React from 'react';
 import SignUp from './Signup';
-import useLoginLogic from '@hooks/useLoginLogic';
+import useSignUpLogic from '@hooks/useSignUpLogic';
 
-export default function SignUpContainer() {
-  const [isLoginViaPhoneNumberFlow, setLoginFlow] = useState(false);
+export default function SignUpContainer({ navigation }: any) {
   const {
     state,
-    onSignUp,
     onChangeEmail,
     onChangePassword,
+    onChangeFirstName,
+    onChangeLastName,
+    onSignUp,
     isSignupDisabled,
-  } = useLoginLogic(isLoginViaPhoneNumberFlow);
+  } = useSignUpLogic();
 
-  function onPressSignUp() {
-    setLoginFlow(prevState => !prevState);
+  function onPressSignIn() {
+    navigation.navigate('Login');
   }
 
   return (
     <SignUp
+      firstname={state.firstName}
+      lastname={state.lastName}
       email={state.email}
-      onChangeEmail={onChangeEmail}
       password={state.password}
-      onChangePassword={onChangePassword}
-      onSignUp={onSignUp}
       isLoading={state.isLoading}
       isSignupDisabled={isSignupDisabled}
+      onChangeFirstName={onChangeFirstName}
+      onChangeLastName={onChangeLastName}
+      onChangeEmail={onChangeEmail}
+      onChangePassword={onChangePassword}
+      onSignUp={onSignUp}
+      onPressHintMessage={onPressSignIn}
     />
   );
 }

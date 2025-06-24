@@ -1,20 +1,13 @@
-import React, {useCallback, useState} from 'react';
+import React, { useState } from 'react';
 import Login from './Login';
 import useLoginLogic from '@hooks/useLoginLogic';
-import {useNavigation} from '@react-navigation/native';
 
-export default function LoginContainer() {
-  const [isLoginViaPhoneNumberFlow, setLoginFlow] = useState(false);
-  const {
-    state,
-    onLogin,
-    onChangeEmail,
-    onChangePassword,
-    isLoginDisabled,
-  } = useLoginLogic(isLoginViaPhoneNumberFlow);
+export default function LoginContainer({ navigation }: any) {
+  const { state, onLogin, onChangeEmail, onChangePassword, isLoginDisabled } =
+    useLoginLogic();
 
-  function onPressSignIn() {
-    setLoginFlow(prevState => !prevState);
+  function onPressSignUp() {
+    navigation.navigate('SignUp');
   }
 
   return (
@@ -26,6 +19,7 @@ export default function LoginContainer() {
       onLogin={onLogin}
       isLoading={state.isLoading}
       isLoginDisabled={isLoginDisabled}
+      onPressHintMessage={onPressSignUp}
     />
   );
 }
