@@ -17,6 +17,20 @@ export interface ParentScrollViewProps {
   screenTitleProps?: Record<string, unknown>;
 }
 
+export interface ParentViewProps {
+  children: React.ReactNode;
+  title?: string;
+  titleStyle?: ViewPropStyle;
+  description?: string;
+  descriptionStyle?: ViewPropStyle;
+  backgroundColour?: string;
+  noPadding?: boolean;
+  containerStyle?: ViewPropStyle;
+  panResponderRef?: object;
+  horizontalLine?: boolean;
+  statusBarStyle?: 'light-content' | 'dark-content';
+  screenTitleProps?: Record<string, unknown>;
+}
 
 export interface ScreenTitleProps {
   title?: string;
