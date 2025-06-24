@@ -36,7 +36,6 @@ export default function ParentScrollView({
         ? containerStyles.parent
         : containerStyles.parentWithPadding),
       paddingBottom: bottom,
-      marginTop: top,
     }),
     [top, bottom, containerStyles, noPadding],
   );

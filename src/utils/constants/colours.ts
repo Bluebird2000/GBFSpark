@@ -25,7 +25,7 @@ const colours = {
   activeBlue100: '#BFD8FF',
   activeBlue200: '#79A1E0',
   activeBlue300: '#6C90CC',
-  activeBlue400: '#5280CC',
+  activeBlue400: '#0275D8',
   activeBlue500: '#2A5CAD',
   activeBlue600: '#325794',
   activeBlue700: '#335080',

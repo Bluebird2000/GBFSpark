@@ -56,12 +56,11 @@ export const buttonStyles = (
   StyleSheet.create({
     container: {
       backgroundColor:
-        colourScheme === 'dark' ? colours.activeBlue400 : colours.darkBase400,
+        colourScheme === 'dark' ? colours.activeBlue400 : colours.activeBlue400,
       width: horizontalScale(width) || '100%',
       height: verticalScale(48),
       borderRadius: 8,
-      borderColor:
-        colourScheme === 'dark' ? colours.activeBlue400 : colours.darkBase400,
+      borderColor: 'transparent',
       borderWidth: 1,
       flexDirection: 'row',
       justifyContent: 'center',
@@ -108,3 +107,39 @@ export const textInputStyles = (
       marginBottom: verticalScale(4),
     },
   });
+
+export const welcomeStyles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+  },
+  innerContainer: {
+    backgroundColor: colours.neutral100,
+    borderRadius: verticalScale(24),
+    marginHorizontal: horizontalScale(8),
+    marginVertical: verticalScale(16),
+    alignItems: 'center',
+    paddingVertical: verticalScale(24),
+  },
+  topContainer: {
+    flex: 1,
+    marginTop: verticalScale(26),
+    marginBottom: verticalScale(32),
+    alignItems: 'center',
+  },
+  buttonsContainer: {
+    width: '100%',
+    paddingHorizontal: horizontalScale(24),
+    paddingBottom: verticalScale(26),
+  },
+});
+
+
+export const passwordStyles = StyleSheet.create({
+  showpassword: {
+    width: horizontalScale(24),
+    left: horizontalScale(290),
+    top: verticalScale(-32),
+  },
+});

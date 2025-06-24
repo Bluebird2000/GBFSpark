@@ -32,7 +32,6 @@ export default function ParentView({
         ? containerStyles.parent
         : containerStyles.parentWithPadding),
       paddingBottom: bottom,
-      marginTop: top,
     }),
     [top, bottom, containerStyles, noPadding],
   );
