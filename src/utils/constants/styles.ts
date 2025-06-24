@@ -48,3 +48,23 @@ export const screenTitleStyles = (
       marginTop: verticalScale(16),
     },
   });
+
+export const buttonStyles = (
+  width = 0,
+  colourScheme = 'light',
+): StyleSheet.NamedStyles<{ [key: string]: StyleProp<unknown> }> =>
+  StyleSheet.create({
+    container: {
+      backgroundColor:
+        colourScheme === 'dark' ? colours.activeBlue400 : colours.darkBase400,
+      width: horizontalScale(width) || '100%',
+      height: verticalScale(48),
+      borderRadius: 8,
+      borderColor:
+        colourScheme === 'dark' ? colours.activeBlue400 : colours.darkBase400,
+      borderWidth: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  });
