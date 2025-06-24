@@ -41,3 +41,15 @@ export interface ScreenTitleProps {
   horizontalLine?: boolean;
   showBackButton?: boolean;
 }
+
+export interface GBFSInputProps {
+  placeholder?: string;
+  label?: string;
+  rightComponentHeading?: string;
+  containerStyle?: object;
+  rightComponent?: React.ReactNode;
+  leftComponent?: React.ReactNode;
+  inputTextStyle?: object;
+  children?: React.ReactNode;
+  [key: string]: unknown;
+}

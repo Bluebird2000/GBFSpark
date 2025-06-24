@@ -68,3 +68,43 @@ export const buttonStyles = (
       alignItems: 'center',
     },
   });
+
+export const textInputStyles = (
+  colourScheme = 'light',
+): StyleSheet.NamedStyles<{ [key: string]: StyleProp<unknown> }> =>
+  StyleSheet.create({
+    textField: {
+      backgroundColor: colours.neutral400,
+
+      paddingHorizontal: horizontalScale(13),
+      borderRadius: 4,
+    },
+    rightIconContainer: {
+      width: horizontalScale(48),
+      height: verticalScale(48),
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      right: horizontalScale(0),
+    },
+    leftIconContainer: {
+      width: horizontalScale(30),
+      height: verticalScale(48),
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      left: horizontalScale(0),
+      top: verticalScale(1),
+      zIndex: 999,
+    },
+    labelContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    labelHeading: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: verticalScale(4),
+    },
+  });

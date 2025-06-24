@@ -5,7 +5,7 @@ import { buttonStyles } from '../../utils/constants/styles';
 import useColorTheme from '@helpers/hooks/useColorTheme';
 import H5 from '@components/atoms/text/h5';
 
-export default function QTButton({
+export default function GBFSButton({
   onPress = () => {},
   text = '',
   width = 0,
