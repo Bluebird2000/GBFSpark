@@ -4,18 +4,25 @@
     "jsx": "react",
     "strict": true,
     "moduleResolution": "bundler",
-    "baseUrl": "src/",
-     "paths": {
-      "@/*": ["*"],
-      "@src/*": ["src/*"],
-      "@assets/*": ["assets/*"],
-      "@components/*": ["components/*"],
-      "@screens/*": ["screens/*"],
-      "@template/*": ["components/template/*"],
-      "@hooks/*": ["hooks/*"],
+    "baseUrl": ".",
+    "types": ["react", "react-native", "node"],
+    "paths": {
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@navigators/*": ["./src/navigators/*"],
+      "@config/*": ["./src/utils/config/*"],
+      "@helpers/*": ["./src/utils/helpers/*"],
+      "@constants/*": ["./src/utils/constants/*"],
+      "@hooks/*": ["./src/hooks/*"],
       "test/*": ["./test/*"],
       "underscores": ["./node_modules/lodash"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "react-native.config.js"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "declaration.d.ts",
+    "react-native.config.js",
+    "babel.config.js"
+  ]
 }
