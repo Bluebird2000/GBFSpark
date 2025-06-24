@@ -9,6 +9,7 @@ const colours = {
   neutral700: '#DCDEE0',
   neutral800: '#DCDEE0',
   neutral900: '#DADADA',
+  neutral1000: '#F3F5F6',
 
   // Base
   darkBase100: '#A8A8A8',

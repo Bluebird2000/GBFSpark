@@ -25,7 +25,7 @@ const SignUp: React.FC<SignUpProps> = ({
   isSignupDisabled,
 }) => {
   return (
-    <ParentScrollView title="Sign In" description="Sign in to your account">
+    <ParentScrollView title="Sign Up" description="Create a new account" containerStyle={{ marginTop: 24 }}>
       <EmailInput
         email={email}
         onChangeEmail={onChangeEmail}
@@ -42,20 +42,12 @@ const SignUp: React.FC<SignUpProps> = ({
         editable={!isLoading}
         onSubmitEditing={onSignUp}
       />
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
-        <GBFSButton
-          text={isLoading ? 'Signing In...' : 'Sign In'}
-          onPress={onSignUp}
-          disabled={isSignupDisabled}
-          containerStyle={{ width: '100%' }}
-        />
-      </View>
+      <GBFSButton
+        text={isLoading ? 'Signing In...' : 'Sign In'}
+        onPress={onSignUp}
+        disabled={isSignupDisabled}
+        containerStyle={{ width: '100%', marginTop: 24, marginBottom: 24 }}
+      />
     </ParentScrollView>
   );
 };

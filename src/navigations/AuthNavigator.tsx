@@ -26,8 +26,8 @@ export default function AuthNavigator(): React.JSX.Element {
         component={WelcomeContainer}
         options={{ headerShown: false }}
       />
-      <AuthStack.Screen name="Login" component={LoginContainer} />
-      <AuthStack.Screen name="SignUp" component={SignUpContainer} />
+      <AuthStack.Screen name="Login" component={LoginContainer} options={{ headerShown: false }}/>
+      <AuthStack.Screen name="SignUp" component={SignUpContainer} options={{ headerShown: false }}/>
     </AuthStack.Navigator>
   );
 }

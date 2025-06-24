@@ -73,8 +73,7 @@ export const textInputStyles = (
 ): StyleSheet.NamedStyles<{ [key: string]: StyleProp<unknown> }> =>
   StyleSheet.create({
     textField: {
-      backgroundColor: colours.neutral400,
-
+      backgroundColor: colours.neutral1000,
       paddingHorizontal: horizontalScale(13),
       borderRadius: 4,
     },

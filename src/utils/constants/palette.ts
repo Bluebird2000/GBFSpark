@@ -4,27 +4,27 @@ import { horizontalScale } from '@constants/scale';
 
 const fontStyle = (colour = colours.neutral900) => ({
   regular: {
-    fontFamily: 'BricolageGrotesque-Regular',
+    fontFamily: 'Poppins-Regular',
     fontStyle: 'normal',
     color: colour,
   },
   medium: {
-    fontFamily: 'BricolageGrotesque-Medium',
+    fontFamily: 'Poppins-Medium',
     fontStyle: 'normal',
     color: colour,
   },
   semiBold: {
-    fontFamily: 'BricolageGrotesque-Semibold',
+    fontFamily: 'Poppins-Semibold',
     fontStyle: 'normal',
     color: colour,
   },
   bold: {
-    fontFamily: 'BricolageGrotesque-Bold',
+    fontFamily: 'Poppins-Bold',
     fontStyle: 'normal',
     color: colour,
   },
   extraBold: {
-    fontFamily: 'BricolageGrotesque-ExtraBold',
+    fontFamily: 'Poppins-ExtraBold',
     fontStyle: 'normal',
     color: colour,
   },
@@ -33,27 +33,27 @@ const fontStyle = (colour = colours.neutral900) => ({
 export const font = (colour = colours.neutral900) => ({
   h1: {
     ...fontStyle(colour).extraBold,
-    fontSize: horizontalScale(72),
+    fontSize: horizontalScale(40),
     lineHeight: horizontalScale(108),
   },
   h2: {
     ...fontStyle(colour).bold,
-    fontSize: horizontalScale(56),
+    fontSize: horizontalScale(32),
     lineHeight: horizontalScale(84),
   },
   h3: {
     ...fontStyle(colour).bold,
-    fontSize: horizontalScale(40),
+    fontSize: horizontalScale(24),
     lineHeight: horizontalScale(60),
   },
   h4: {
     ...fontStyle(colour).bold,
-    fontSize: horizontalScale(32),
+    fontSize: horizontalScale(24),
     lineHeight: horizontalScale(48),
   },
   h5: {
     ...fontStyle(colour).bold,
-    fontSize: horizontalScale(24),
+    fontSize: horizontalScale(20),
     lineHeight: horizontalScale(36),
   },
   subTitle: {

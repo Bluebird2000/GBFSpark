@@ -1,11 +1,12 @@
 import React from 'react';
-import {TextInput, Pressable, Platform, View, TextStyle} from 'react-native';
+import {TextInput, Pressable, View, TextStyle} from 'react-native';
 import If from '@components/atoms/If';
 import {font} from '@constants/palette';
 import colours from '@constants/colours';
 import {InputFieldProps} from '@helpers/common';
 import {horizontalScale, verticalScale} from '@constants/scale';
 import useColorTheme from '@helpers/hooks/useColorTheme';
+import { textInputStyles } from '@constants/styles';
 
 function InputField({
   borderColor,
@@ -19,7 +20,7 @@ function InputField({
   isError,
   leftContainerStyle,
   width = horizontalScale(327),
-  height = verticalScale(48),
+  height = verticalScale(50),
   ...props
 }: InputFieldProps): React.JSX.Element {
   const colourScheme = useColorTheme();
@@ -30,15 +31,14 @@ function InputField({
   const TEXT_STYLE = font(COLOUR_SCHEME_VALUE_COLOUR).bodyLarge;
   const FOCUSED_STYLE = {
     borderWidth: 1,
-    borderColor:
-      colourScheme === 'dark' ? colours.neutral900 : colours.neutral900,
+    borderColor: colours.neutral200,
   };
 
   const TEXT_PADDINGLEFT = {
     paddingLeft: leftComponent ? horizontalScale(30) : horizontalScale(13),
   };
 
-  const styles = textInputStyle(colourScheme);
+  const styles = textInputStyles(colourScheme);
 
   return (
     <Pressable onPress={onPress}>

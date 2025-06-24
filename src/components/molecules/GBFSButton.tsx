@@ -21,7 +21,7 @@ export default function GBFSButton({
       style={[container, containerStyle]}
       disabled={disabled}
     >
-      <H5 colour={colours.neutral300} textStyle={textStyle}>
+      <H5 colour={colours.neutral200} textStyle={textStyle}>
         {text}
       </H5>
     </TouchableOpacity>

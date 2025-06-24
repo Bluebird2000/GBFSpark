@@ -46,7 +46,11 @@ export default function PasswordInput({
         onChangeText={onChangePassword}
         secureTextEntry={!showPassword}
         textContentType={textContentType}
-        containerStyle={{ marginTop: verticalScale(24), ...containerStyle }}
+        containerStyle={{
+          marginTop: verticalScale(14),
+          marginBottom: verticalScale(24),
+          ...containerStyle,
+        }}
         message={message}
         {...props}
       />

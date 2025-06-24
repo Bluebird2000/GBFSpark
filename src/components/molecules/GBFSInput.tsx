@@ -1,12 +1,13 @@
-import React, {JSX, useState} from 'react';
-import {View} from 'react-native';
+import React, { JSX, useState } from 'react';
+import { View } from 'react-native';
 import If from '@components/atoms/If';
 import colours from '@constants/colours';
 import useColorTheme from '@helpers/hooks/useColorTheme';
 import BodySmall from '@components/atoms/text/bodySmall';
-import {GBFSInputProps} from '@helpers/interface';
+import { GBFSInputProps } from '@helpers/interface';
 import InputField from '@components/atoms/inputField';
 import { textInputStyles } from '@constants/styles';
+import { horizontalScale } from '@constants/scale';
 
 export default function GBFSInput({
   placeholder = 'Placeholder',
@@ -23,17 +24,17 @@ export default function GBFSInput({
   const styles = textInputStyles(colourScheme);
 
   return (
-    <View style={containerStyle}>
+    <View style={{ paddingLeft: horizontalScale(8), ...containerStyle }}>
       <View style={styles.labelContainer}>
         <View style={styles.labelHeading}>
           <If condition={label}>
-            <BodySmall textStyle={{color: colours.neutral400}}>
+            <BodySmall textStyle={{ color: colours.neutral400 }}>
               {label}
             </BodySmall>
           </If>
         </View>
         <If condition={rightComponentHeading}>
-          <BodySmall textStyle={{color: colours.neutral400}}>
+          <BodySmall textStyle={{ color: colours.neutral400 }}>
             {rightComponentHeading}
           </BodySmall>
         </If>

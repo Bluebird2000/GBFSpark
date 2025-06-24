@@ -25,7 +25,7 @@ const Login: React.FC<LoginProps> = ({
   isLoginDisabled,
 }) => {
   return (
-    <ParentScrollView title="Sign In" description="Sign in to your account">
+    <ParentScrollView title="Sign In" description="Sign in to your account" containerStyle={{ padding: 20 }}>
       <EmailInput
         email={email}
         onChangeEmail={onChangeEmail}
