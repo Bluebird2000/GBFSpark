@@ -4,7 +4,7 @@ import GameResult from './Result';
 
 export default function GameResultContainer({ navigation }: any) {
   const route = useRoute();
-  const { score } = route.params as { score: number };
+  const { score = 0 } = (route.params || {}) as { score?: number };
 
   function handlePlayAgain() {
     navigation.replace('Main');
