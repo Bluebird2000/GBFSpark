@@ -13,27 +13,16 @@ function LoggedInComponent({ ...navigatorProps }) {
 }
 
 export default function AppNavigator() {
-  // const { isLoggedIn } = useSelector(reduxState => reduxState.user);
-
+  // const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  let isLoggedIn = true;
   return (
     <NavigationContainer>
-      <AppStack.Navigator>
-        <AppStack.Screen
-          name="Auth"
-          component={AuthNavigator}
-          options={{ headerShown: false }}
-        />
-        {/* {isLoggedIn ? (
-          <AppStack.Screen name="Main" options={{ headerShown: false }}>
-            {props => <LoggedInComponent {...props} />}
-          </AppStack.Screen>
+      <AppStack.Navigator screenOptions={{ headerShown: false }}>
+        {isLoggedIn ? (
+          <AppStack.Screen name="Main" component={MainNavigator} />
         ) : (
-          <AppStack.Screen
-            name="Auth"
-            component={AuthNavigator}
-            options={{ headerShown: false }}
-          />
-        )} */}
+          <AppStack.Screen name="Auth" component={AuthNavigator} />
+        )}
       </AppStack.Navigator>
     </NavigationContainer>
   );

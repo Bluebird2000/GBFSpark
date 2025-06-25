@@ -74,3 +74,26 @@ export interface LoginProps {
   isLoginDisabled: boolean;
   onPressHintMessage: () => void;
 }
+// types.ts
+export interface StationStatus {
+  station_id: string;
+  num_bikes_available: number;
+  num_docks_available: number;
+  lat: number;
+  lon: number;
+}
+
+export interface StationInfo {
+  station_id: string;
+  name: string;
+  lat: number;
+  lon: number;
+}
+
+export interface Station extends StationStatus, Pick<StationInfo, 'name'> {}
+
+export interface Question {
+  question: string;
+  options: string[];
+  answer: string;
+}

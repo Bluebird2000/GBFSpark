@@ -1,0 +1,24 @@
+import React from 'react';
+import { useRoute } from '@react-navigation/native';
+import GameResult from './Result';
+
+export default function GameResultContainer({ navigation }: any) {
+  const route = useRoute();
+  const { score } = route.params as { score: number };
+
+  function handlePlayAgain() {
+    navigation.replace('Main');
+  }
+
+  function handleViewHistory() {
+    navigation.navigate('GameHistory');
+  }
+
+  return (
+    <GameResult
+      score={score}
+      onPressPlayAgain={handlePlayAgain}
+      onPressViewHistory={handleViewHistory}
+    />
+  );
+}
