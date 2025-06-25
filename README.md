@@ -20,15 +20,15 @@ The app is built using Atomic Design Methodology, a pattern that encourages scal
 
 - # Molecules
     - These are combinations of atoms working together as a functional unit (e.g., buttons).
+    - Example:
+    ```<GBFSButton text="Create Account" onPress={onPressPrimaryButton} />```
+
+- # Templates
+    - These define the layout structure and include logic for scroll/gesture handling and spacing based on safe area insets, handling safe-areas, status-bar, padding, keyboards, etc.
     - ```ParentView:``` A basic screen wrapper for static content.
     - ```ParentScrollView:``` For scrollable content with keyboard handling and padding logic.
     - Example:
     ```<ParentView noPadding>{/* Child Components */} </ParentView>```
-
-- # Templates
-    - These define the layout structure and include logic for scroll/gesture handling and spacing based on safe area insets, handling safe-areas, status-bar, padding, keyboards, etc.
-    - Example:
-    ```<GBFSButton text="Create Account" onPress={onPressPrimaryButton} />```
 
 # Why Atomic?
    - Predictable file tree – new joiners locate components instantly.
