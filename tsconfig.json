@@ -5,7 +5,7 @@
     "strict": true,
     "moduleResolution": "bundler",
     "baseUrl": ".",
-    "types": ["react", "react-native", "node"],
+    "types": ["jest", "react", "react-native", "node"],
     "paths": {
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
