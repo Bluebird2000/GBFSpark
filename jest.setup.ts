@@ -39,7 +39,6 @@ jest.mock('react-native-encrypted-storage', () => ({
 }));
 
 
-/* ---------- NEW: reanimated mock & “callImmediately” fix ---------- */
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');
   // silences the “callImmediately” warning and stops a live timer
