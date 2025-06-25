@@ -104,3 +104,10 @@ When you want to forcefully reload, for example to reset the state of your app, 
 ## Congratulations! :tada:
 
 You've successfully run and modified the GBFSpark App. :partying_face:
+
+## Things I'd Improve with More Time
+- Add full i18n support for internationalization
+- Add full theming support
+- Persist state securely using end-to-end encryption.
+- Setup snyk to help scan dependencies and code for vulnerabilities, and sonar cloud to help analyze code for bugs, code smells, duplication, and coverage.
+- Refactor API service to a more scalable repository pattern.
