@@ -1,12 +1,5 @@
-import {
-  Dimensions,
-  Platform,
-  StyleProp,
-  StyleSheet,
-  useWindowDimensions,
-} from 'react-native';
+import { Platform, StyleProp, StyleSheet } from 'react-native';
 import { horizontalScale, verticalScale } from '@constants/scale';
-import { font } from './palette';
 import colours from './colours';
 
 export const container = (
@@ -131,7 +124,6 @@ export const welcomeStyles = StyleSheet.create({
   },
 });
 
-
 export const passwordStyles = StyleSheet.create({
   showpassword: {
     width: horizontalScale(24),
@@ -156,5 +148,34 @@ export const authStyles = StyleSheet.create({
     marginTop: verticalScale(24),
     justifyContent: 'center',
   },
-  mb0: {marginBottom: 0},
+  mb0: { marginBottom: 0 },
+});
+
+export const historyStyles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colours.neutral200,
+    paddingHorizontal: 16,
+    marginVertical: 4,
+  },
+  circleDot: {
+    height: 8,
+    width: 8,
+    borderRadius: 5,
+    marginRight: 18,
+    backgroundColor: colours.activeBlue200,
+  },
+  content: {
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderColor: colours.neutral200,
+  },
+  emptyContainer: {
+    flex: 1,
+    height: verticalScale(400),
+    justifyContent: 'center',
+    padding: 16,
+    alignItems: 'center',
+  },
 });

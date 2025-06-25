@@ -10,6 +10,7 @@ import { generateQuestions } from '@components/service/quiz';
 export default function DashboardContainer({ navigation }: any) {
   const [questions, setQuestions] = useState<any[]>([]);
   const [current, setCurrent] = useState(0);
+  const [hasGameStarted, setHasGameStarted] = useState(false);
   const { score, updateScore } = useScore();
   const { timeLeft, isRunning, start } = useGameTimer(60);
 
@@ -20,7 +21,6 @@ export default function DashboardContainer({ navigation }: any) {
         const generated = generateQuestions(stations);
         if (!generated.length) throw new Error('No questions generated');
         setQuestions(generated);
-        start();
       } catch (err) {
         Alert.alert(
           'Failed to load quiz',
@@ -32,8 +32,10 @@ export default function DashboardContainer({ navigation }: any) {
   }, []);
 
   useEffect(() => {
-    if (timeLeft === 0) endGame();
-  }, [timeLeft]);
+    if (timeLeft === 0 && hasGameStarted) {
+      endGame();
+    }
+  }, [timeLeft, hasGameStarted]);
 
   const handleAnswer = (selected: string) => {
     if (!questions[current]) return;
@@ -46,6 +48,11 @@ export default function DashboardContainer({ navigation }: any) {
     } else {
       endGame();
     }
+  };
+
+  const handleStartGame = () => {
+    setHasGameStarted(true);
+    start();
   };
 
   async function endGame() {
@@ -67,6 +74,8 @@ export default function DashboardContainer({ navigation }: any) {
       current={current}
       score={score}
       timeLeft={timeLeft}
+      hasGameStarted={hasGameStarted}
+      onStartGame={handleStartGame}
       onAnswer={handleAnswer}
       onEndGame={endGame}
     />

@@ -5,12 +5,16 @@ import BodyMedium from '@components/atoms/text/bodyMedium';
 import BodyLarge from '@components/atoms/text/bodyLarge';
 import { verticalScale } from '@constants/scale';
 import Card from './Component/Card';
+import GBFSButton from '@components/molecules/GBFSButton';
+import colours from '@constants/colours';
 
 type DashboardProps = {
   questions: any[];
   current: number;
   score: number;
   timeLeft: number;
+  hasGameStarted: boolean;
+  onStartGame: () => void;
   onAnswer: (selected: string) => void;
   onEndGame: () => void;
 };
@@ -20,6 +24,8 @@ export default function Dashboard({
   current,
   score,
   timeLeft,
+  hasGameStarted,
+  onStartGame,
   onAnswer,
   onEndGame,
 }: DashboardProps) {
@@ -37,19 +43,38 @@ export default function Dashboard({
       description="Answer as many as you can in 60 seconds!"
       containerStyle={{ marginTop: 24 }}
     >
-      <View style={{ paddingVertical: verticalScale(14) }}>
-        <BodyMedium>⏱ Time Left: {timeLeft}s</BodyMedium>
-        <BodyMedium>🏆 Score: {score}</BodyMedium>
-      </View>
+      {!hasGameStarted ? (
+        <View style={{ marginTop: verticalScale(32) }}>
+          <BodyLarge style={{ textAlign: 'center', marginBottom: verticalScale(24) }}>
+            Ready to test your knowledge?
+          </BodyLarge>
+          <GBFSButton
+            text="Start Game"
+            onPress={onStartGame}
+            textStyle={{ color: colours.darkBase400 }}
+            containerStyle={{
+              backgroundColor: 'transparent',
+              borderColor: colours.activeBlue400,
+            }}
+          />
+        </View>
+      ) : (
+        <>
+          <View style={{ paddingVertical: verticalScale(14) }}>
+            <BodyMedium>⏱ Time Left: {timeLeft}s</BodyMedium>
+            <BodyMedium>🏆 Score: {score}</BodyMedium>
+          </View>
 
-      <Card
-        question={questions[current]?.question}
-        options={questions[current]?.options || []}
-        onAnswer={onAnswer}
-      />
+          <Card
+            question={questions[current]?.question}
+            options={questions[current]?.options || []}
+            onAnswer={onAnswer}
+          />
 
-      {current === questions.length - 1 && (
-        <Button title="End Game Now" onPress={onEndGame} />
+          {current === questions.length - 1 && (
+            <Button title="End Game Now" onPress={onEndGame} />
+          )}
+        </>
       )}
     </ParentScrollView>
   );

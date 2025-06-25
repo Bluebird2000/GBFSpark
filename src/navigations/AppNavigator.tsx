@@ -13,7 +13,6 @@ export type RootStackParamList = {
 const AppStack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-  // The selector will immediately reflect the value once redux‑persist
   const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
 
   return (

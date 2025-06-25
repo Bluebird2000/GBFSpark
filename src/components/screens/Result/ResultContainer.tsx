@@ -11,7 +11,7 @@ export default function GameResultContainer({ navigation }: any) {
   }
 
   function handleViewHistory() {
-    navigation.navigate('GameHistory');
+    navigation.navigate('History');
   }
 
   return (

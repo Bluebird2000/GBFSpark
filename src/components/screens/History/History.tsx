@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import ParentScrollView from '@components/templates/ParentScrollView';
 import BodyMedium from '@components/atoms/text/bodyMedium';
-import colours from '@constants/colours';
+import { verticalScale } from '@constants/scale';
+import BodyLarge from '@components/atoms/text/bodyLarge';
+import H6 from '@components/atoms/text/h6';
+import ParentView from '@components/templates/ParentView';
+import { historyStyles } from '@constants/styles';
 
 type HistoryItem = {
   date: string;
@@ -15,30 +18,33 @@ type HistoryProps = {
 
 export default function History({ history }: HistoryProps) {
   return (
-    <ParentScrollView
+    <ParentView
       title="Game History"
       description="Your previous quiz attempts"
-      containerStyle={{ marginTop: 24 }}
+      containerStyle={{ marginTop: verticalScale(24) }}
     >
       <FlatList
         data={history}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ item }) => (
-          <View
-            style={{
-              paddingVertical: 12,
-              borderBottomWidth: 1,
-              borderColor: colours.neutral200,
-            }}
-          >
-            <BodyMedium>Date: {new Date(item.date).toLocaleString()}</BodyMedium>
-            <BodyMedium>Score: {item.score}</BodyMedium>
+          <View style={historyStyles.container}>
+            <View style={historyStyles.circleDot}></View>
+            <View style={historyStyles.content}>
+              <BodyMedium>
+                Date: {new Date(item.date).toLocaleString()}
+              </BodyMedium>
+              <H6>Score: {item.score}</H6>
+            </View>
           </View>
         )}
         ListEmptyComponent={
-          <BodyMedium>No quiz attempts found yet.</BodyMedium>
+          <View
+            style={historyStyles.emptyContainer}
+          >
+            <BodyLarge>No game history available</BodyLarge>
+          </View>
         }
       />
-    </ParentScrollView>
+    </ParentView>
   );
 }

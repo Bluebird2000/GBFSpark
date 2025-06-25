@@ -5,7 +5,6 @@ import History from './History';
 export default function HistoryContainer() {
   const [history, setHistory] = useState<any[]>([]);
 
-  /** Pull the saved quiz attempts from storage */
   const loadHistory = useCallback(async () => {
     try {
       const stored = await AsyncStorage.getItem('game_history');
