@@ -28,6 +28,23 @@ The app is built using Atomic Design Methodology, a pattern that encourages scal
    - Changes are low-risk – altering an atom cascades consistently.
    - Scales from prototype to production without painful renames.
 
+# Thought Process Summary
+The application starts with a well-defined design system using the Atomic methodology, ensuring every visual and functional element is reusable and testable. Each screen is split into containers and presentational components, with business logic separated from UI logic. The welcome screen, for instance, uses atomic components (texts, images) combined into a molecule (GBFSButton), wrapped in a template (ParentView) to ensure consistent layout styling.
+
+APIs will be consumed using a service abstraction pattern, and state management will follow a Redux-style separation as complexity increases.
+
+# Tech Stack & Rationale
+
+| Tech                          | Why it was used                                             |
+| ----------------------------- | ----------------------------------------------------------- |
+| **React Native**              | For building performant, cross-platform mobile apps         |
+| **TypeScript**                | For type safety, better tooling, and maintainability        |
+| **Atomic Design**             | For scalable and reusable component architecture            |
+| **Safe Area Context**         | To respect device boundaries (like notches and status bars) |
+| **Keyboard Aware ScrollView** | For better keyboard interaction UX                          |
+| **Metro Bundler**             | For hot reloading and fast development feedback             |
+
+
 # Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
