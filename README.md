@@ -3,6 +3,12 @@ A React Native mobile application built to consume and present data from the Gen
 
 ![alt text](gbfs.png)
 
+# Unit Testing
+Unit tests have been implemented for the TextVariant components located in components/atoms/text. These include components like BodyMedium, BodySmall, H1 through H6, and verify correct rendering, style application, and colour behaviour.
+Run ```npm run test``` to see the below output
+
+<img width="738" alt="Screenshot 2025-06-25 at 12 13 28" src="https://github.com/user-attachments/assets/88bfa72c-e989-4acb-857c-6a6637687144" />
+
 # Project Thinking & Structure
 ### Architecture Overview (Atomic Design)
 
