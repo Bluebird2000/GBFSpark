@@ -1,26 +1,51 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# GBFSpark
+A React Native mobile application built to consume and present data from the General Bikeshare Feed Specification (GBFS) using a clean and scalable architecture. Designed and implemented in a modular way, the application demonstrates integration with external APIs, data management, and reusable UI components.
+
+# Project Thinking & Structure
+### Architecture Overview (Atomic Design)
+
+The app is built using Atomic Design Methodology, a pattern that encourages scalability, reusability, and consistency in UI development. This design system is divided into 5 stages, but for this app we focus on:
+- # Atoms
+    - These are the foundational UI components, like text variants (e.g., BodyMedium, H6) and simple wrappers.
+    - Example:
+    ```import BodyMedium from '@components/atoms/text/bodyMedium';```
+
+- # Molecules
+    - These are combinations of atoms working together as a functional unit (e.g., buttons).
+    - ```ParentView:``` A basic screen wrapper for static content.
+    - ```ParentScrollView:``` For scrollable content with keyboard handling and padding logic.
+    - Example:
+    ```<ParentView noPadding>{/* Child Components */} </ParentView>```
+
+- # Templates
+    - These define the layout structure and include logic for scroll/gesture handling and spacing based on safe area insets, handling safe-areas, status-bar, padding, keyboards, etc.
+    - Example:
+    ```<GBFSButton text="Create Account" onPress={onPressPrimaryButton} />```
+
+# Why Atomic?
+   - Predictable file tree – new joiners locate components instantly.
+   - Re-use is encouraged; no duplicated styles.
+   - Changes are low-risk – altering an atom cascades consistently.
+   - Scales from prototype to production without painful renames.
 
 # Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
-## Step 1: Start Metro
+## Step 1: Clone the repository
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
+```git clone https://github.com/Bluebird2000/GBFSpark```
 
 ```sh
-# Using npm
-npm start
+# cd to project directory and install dependencies using npm
+npm install
 
-# OR using Yarn
-yarn start
-```
+# once npm is done installing, cd to the ios directory and run
+pod install
 
 ## Step 2: Build and run your app
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+With Metro running, open a new terminal window/pane from the root of GBFS project, and use one of the following commands to build and run your Android or iOS app:
 
 ### Android
 
@@ -28,41 +53,19 @@ With Metro running, open a new terminal window/pane from the root of your React 
 # Using npm
 npm run android
 
-# OR using Yarn
-yarn android
+# For IOS
+npm run ios
 ```
 
 ### iOS
 
 For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+If everything is set up correctly, you should see the GBFSpark app running in the Android Emulator, iOS Simulator, or your connected device.
 
-```sh
-bundle install
-```
+This is one way to run the GBFS app — you can also build it directly from Android Studio or Xcode.
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
+## Step 3: Modify THE app
 
 Now that you have successfully run the app, let's make changes!
 
@@ -75,23 +78,4 @@ When you want to forcefully reload, for example to reset the state of your app, 
 
 ## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+You've successfully run and modified the GBFSpark App. :partying_face:
