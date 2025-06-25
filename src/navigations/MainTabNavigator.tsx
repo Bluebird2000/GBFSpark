@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Dashboard from '@components/screens/Dashboard/DashboardContainer';
 import GameResult from '@components/screens/Result/ResultContainer';
+import History from '@components/screens/History/HistoryContainer';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +21,7 @@ export default function MainTabNavigator() {
       />
       <Tab.Screen
         name="History"
-        component={Dashboard}
+        component={History}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>

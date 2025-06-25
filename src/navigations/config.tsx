@@ -6,7 +6,6 @@ export const headerOptions = (
   title: '',
   headerShadowVisible: false,
   headerStyle: {
-    backgroundColor:
-      colourScheme === 'dark' ? colours.darkBase200 : colours.neutral100,
+    backgroundColor: colours.neutral100,
   },
 });

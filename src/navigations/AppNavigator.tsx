@@ -1,24 +1,25 @@
-import React, { useCallback, useEffect } from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AuthNavigator from "./AuthNavigator";
+import MainNavigator from "./MainNavigator";
+import { useAppSelector } from "../utils/config/reduxStore";
 
-import AuthNavigator, { AUTH_SCREEN_CONFIG } from './AuthNavigator';
-import MainNavigator from './MainNavigator';
+export type RootStackParamList = {
+  Auth: undefined;
+  Main: undefined;
+};
 
-const AppStack = createNativeStackNavigator();
-
-function LoggedInComponent({ ...navigatorProps }) {
-  return <MainNavigator {...navigatorProps} />;
-}
+const AppStack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-  // const { isLoggedIn } = useSelector((state: RootState) => state.user);
-  let isLoggedIn = true;
+  // The selector will immediately reflect the value once redux‑persist
+  const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
+
   return (
     <NavigationContainer>
       <AppStack.Navigator screenOptions={{ headerShown: false }}>
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <AppStack.Screen name="Main" component={MainNavigator} />
         ) : (
           <AppStack.Screen name="Auth" component={AuthNavigator} />
