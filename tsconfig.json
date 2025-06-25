@@ -1,3 +1,28 @@
 {
-  "extends": "@react-native/typescript-config"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "types": ["react", "react-native", "node"],
+    "paths": {
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@navigators/*": ["./src/navigators/*"],
+      "@config/*": ["./src/utils/config/*"],
+      "@helpers/*": ["./src/utils/helpers/*"],
+      "@constants/*": ["./src/utils/constants/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "test/*": ["./test/*"],
+      "underscores": ["./node_modules/lodash"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "declaration.d.ts",
+    "react-native.config.js",
+    "babel.config.js"
+  ]
 }
