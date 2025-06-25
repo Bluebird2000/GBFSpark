@@ -7,8 +7,8 @@ module.exports = {
     '^.+\\.(js|ts|tsx)$': 'babel-jest',
   },
   fakeTimers: {
-    enableGlobally: true, // <<— key line
-    legacyFakeTimers: false, // use modern implementation
+    enableGlobally: true,
+    legacyFakeTimers: false,
   },
   moduleNameMapper: {
     '^@assets/(.*)$': '<rootDir>/src/assets/$1',
