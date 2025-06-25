@@ -1,12 +1,12 @@
 import React, { JSX } from 'react';
 import { View } from 'react-native';
 import If from '@components/atoms/If';
-import H5 from '@components/atoms/text/h5';
 import H1 from '@components/atoms/text/h1';
 import { horizontalScale } from '@constants/scale';
 import useColorTheme from '@helpers/hooks/useColorTheme';
 import { screenTitleStyles } from '@constants/styles';
 import { ScreenTitleProps } from '@helpers/interface';
+import H6 from '@components/atoms/text/h6';
 
 export default function ScreenTitle({
   title = 'Title',
@@ -34,14 +34,14 @@ export default function ScreenTitle({
         </H1>
       </If>
       <If condition={description}>
-        <H5
+        <H6
           textStyle={{
             ...styles.description,
             ...paddingHorizontalStyle,
           }}
         >
           {description}
-        </H5>
+        </H6>
       </If>
     </View>
   );

@@ -7,6 +7,7 @@ import { verticalScale } from '@constants/scale';
 import Card from './Component/Card';
 import GBFSButton from '@components/molecules/GBFSButton';
 import colours from '@constants/colours';
+import { useAppSelector } from '@config/reduxStore';
 
 type DashboardProps = {
   questions: any[];
@@ -29,6 +30,8 @@ export default function Dashboard({
   onAnswer,
   onEndGame,
 }: DashboardProps) {
+  const firstName = useAppSelector(state => state.user.firstName);
+
   if (!questions.length) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -40,12 +43,14 @@ export default function Dashboard({
   return (
     <ParentScrollView
       title="GBFS Quiz"
-      description="Answer as many as you can in 60 seconds!"
+      description={` Hi ${firstName}, Answer as many as you can in 60 seconds!`}
       containerStyle={{ marginTop: verticalScale(24) }}
     >
       {!hasGameStarted ? (
         <View style={{ marginTop: verticalScale(32) }}>
-          <BodyLarge style={{ textAlign: 'center', marginBottom: verticalScale(24) }}>
+          <BodyLarge
+            style={{ textAlign: 'center', marginBottom: verticalScale(24) }}
+          >
             Ready to test your knowledge?
           </BodyLarge>
           <GBFSButton
