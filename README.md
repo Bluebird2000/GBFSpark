@@ -1,6 +1,14 @@
 # GBFSpark
 A React Native mobile application built to consume and present data from the General Bikeshare Feed Specification (GBFS) using a clean and scalable architecture. Designed and implemented in a modular way, the application demonstrates integration with external APIs, data management, and reusable UI components.
 
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-6.png)
+
 # Project Thinking & Structure
 ### Architecture Overview (Atomic Design)
 
