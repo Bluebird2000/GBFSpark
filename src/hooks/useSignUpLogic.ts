@@ -1,3 +1,5 @@
+import { updateProfile } from '@config/userReducer';
+import { hashPassword } from '@helpers/hash';
 import { useState, useMemo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -15,7 +17,10 @@ export default function useSignUpLogic() {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
 
-  const setStateValue = (key: keyof typeof initialState, value: string | boolean) => {
+  const setStateValue = (
+    key: keyof typeof initialState,
+    value: string | boolean,
+  ) => {
     setState(prev => ({ ...prev, [key]: value }));
   };
 
@@ -36,32 +41,26 @@ export default function useSignUpLogic() {
   }, []);
 
   const isSignupDisabled = useMemo(() => {
-    return (
-      !state.email ||
-      !state.password ||
-      !state.firstName ||
-      !state.lastName ||
-      state.isLoading
-    );
+    const { email, password, firstName, lastName, isLoading } = state;
+    return !email || !password || !firstName || !lastName || isLoading;
   }, [state]);
 
   const onSignUp = useCallback(() => {
-    // Simulated async signup logic
     setState(prev => ({ ...prev, isLoading: true }));
 
-    setTimeout(() => {
-      console.log('User signed up:', {
-        email: state.email,
-        password: state.password,
-        firstName: state.firstName,
-        lastName: state.lastName,
-      });
+    const passwordHash = hashPassword(state.password);
+    const { email, firstName, lastName } = state;
+    dispatch(
+      updateProfile({
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        passwordHash,
+        isLoggedIn: true,
+      }),
+    );
 
-      // You would normally dispatch an action here
-      // dispatch(signUpAction(...))
-
-      setState(prev => ({ ...prev, isLoading: false }));
-    }, 2000);
+    setState(prev => ({ ...prev, isLoading: false }));
   }, [state]);
 
   return {

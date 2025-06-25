@@ -9,8 +9,10 @@ import { horizontalScale } from '@constants/scale';
 import { authStyles } from '@constants/styles';
 import { LoginProps } from '@helpers/interface';
 import colours from '@constants/colours';
+import BodyMedium from '@components/atoms/text/bodyMedium';
 
 const Login: React.FC<LoginProps> = ({
+  state,
   email,
   onChangeEmail,
   isLoading,
@@ -18,7 +20,7 @@ const Login: React.FC<LoginProps> = ({
   onChangePassword,
   onLogin,
   isLoginDisabled,
-  onPressHintMessage
+  onPressHintMessage,
 }) => {
   return (
     <ParentScrollView
@@ -42,6 +44,12 @@ const Login: React.FC<LoginProps> = ({
         editable={!isLoading}
         onSubmitEditing={onLogin}
       />
+
+      {!!state.messageType && (
+        <BodyMedium style={{ color: 'red', marginTop: 8 }}>
+          Invalid email or password
+        </BodyMedium>
+      )}
       <View
         style={{
           flex: 1,
@@ -53,13 +61,13 @@ const Login: React.FC<LoginProps> = ({
           text={isLoading ? 'Signing In...' : 'Sign In'}
           onPress={onLogin}
           disabled={isLoginDisabled}
-           containerStyle={{
-          width: '100%',
-          marginTop: 14,
-          backgroundColor: isLoginDisabled
-            ? colours.activeBlue200
-            : colours.activeBlue400,
-        }}
+          containerStyle={{
+            width: '100%',
+            marginTop: 14,
+            backgroundColor: isLoginDisabled
+              ? colours.activeBlue200
+              : colours.activeBlue400,
+          }}
         />
       </View>
 

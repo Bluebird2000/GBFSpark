@@ -111,3 +111,4 @@ You've successfully run and modified the GBFSpark App. :partying_face:
 - Persist state securely using end-to-end encryption.
 - Setup snyk to help scan dependencies and code for vulnerabilities, and sonar cloud to help analyze code for bugs, code smells, duplication, and coverage.
 - Refactor API service to a more scalable repository pattern.
+- Real backend (Firebase or Supabase) for cross-device auth & leaderboard.

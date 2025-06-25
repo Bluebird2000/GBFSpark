@@ -12,6 +12,7 @@ export default function LoginContainer({ navigation }: any) {
 
   return (
     <Login
+      state={state}
       email={state.email}
       onChangeEmail={onChangeEmail}
       password={state.password}

@@ -1,15 +1,10 @@
-import {
-  useCallback,
-  useEffect,
-  useState,
-  useMemo,
-  useRef,
-} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch } from 'redux';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../utils/config/reduxStore';
-import { handleError, isEmailValid } from '@helpers/helpers';
+import { isEmailValid } from '@helpers/helpers';
+import { updateProfile } from '../utils/config/userReducer';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { hashPassword } from '@helpers/hash';
+
 
 type LoginState = {
   email: string;
@@ -20,39 +15,29 @@ type LoginState = {
 };
 
 export default function useLoginLogic() {
-  const dispatch: Dispatch = useDispatch();
-  const { email: reduxEmail, firstName: reduxFirstName } = useSelector(
-    (reduxState: RootState) => reduxState.user,
-  );
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
 
   const initialState: LoginState = {
-    email: reduxEmail || '',
+    email: user.email || '',
     password: '',
     isLoading: false,
-    messageType: 'error',
+    messageType: '',
   };
 
-  const isMounted = useRef<boolean>(false);
   const [state, setState] = useState<LoginState>(initialState);
+  const isMounted = useRef<boolean>(false);
 
-  /** Disable the button if:  
-    • a request is in flight  
-    • e-mail is invalid  
-    • password is empty */
   const isLoginDisabled = useMemo(
-    () =>
-      state.isLoading ||
-      !isEmailValid(state.email) ||
-      !state.password,
-    [state.isLoading, state.email, state.password],
+    () => state.isLoading || !isEmailValid(state.email) || !state.password,
+    [state],
   );
 
-  /** Safe state-setter that ignores calls after unmount */
-  function setStateIfMounted(obj: Partial<LoginState>) {
+  const setStateIfMounted = (obj: Partial<LoginState>) => {
     if (isMounted.current) {
       setState(prev => ({ ...prev, ...obj }));
     }
-  }
+  };
 
   const onChangeEmail = useCallback(
     (newEmail: string) => setStateIfMounted({ email: newEmail }),
@@ -64,32 +49,27 @@ export default function useLoginLogic() {
     [],
   );
 
-  /** Handle a successful login response */
-  const handleLoginSuccess = useCallback(
-    async ({ data }: any) => {
-      const { access_token, email, firstName, lastName } = data;
+  const onLogin = useCallback(async () => {
+    setState(prev => ({ ...prev, isLoading: true }));
 
-      const loginData = {
-        access_token,
-        isLoggedIn: true,
-        email,
-        firstName,
-        lastName,
-        password: state.password,
-      };
+    const inputHash = await hashPassword(state.password);
+    const emailMatch = user.email.toLowerCase() === state.email.toLowerCase();
+    const passwordMatch = inputHash === user.passwordHash;
 
-      // dispatch(updateProfile(loginData));
-      // dispatch(updateProfile({ isFirstLogin: false }));
-    },
-    [state.password, dispatch],
-  );
+    if (emailMatch && passwordMatch) {
+      dispatch(updateProfile({ isLoggedIn: true }));
+    } else {
+      setState(prev => ({
+        ...prev,
+        messageType: 'error',
+        isLoading: false,
+      }));
+      return;
+    }
 
-  /** Toggle loading flag (used as a simple mock for now) */
-  const onLogin = useCallback(() => {
-    setState(prev => ({ ...prev, isLoading: !prev.isLoading }));
-  }, []);
+    setState(prev => ({ ...prev, isLoading: false }));
+  }, [state, user, dispatch]);
 
-  /* Mark mounted / unmounted */
   useEffect(() => {
     isMounted.current = true;
     return () => {
@@ -97,19 +77,8 @@ export default function useLoginLogic() {
     };
   }, []);
 
-  useEffect(() => {
-    if (state.isLoading) {
-      // signIn({ username: state.email, password: state.password })
-      //   .then(handleLoginSuccess)
-      //   .catch((e) => handleError(e as Error))
-      //   .finally(onLogin);
-    }
-  }, [state.email, state.password, state.isLoading]);
-
   return {
     state,
-    setStateIfMounted,
-    handleLoginSuccess,
     onLogin,
     onChangeEmail,
     onChangePassword,

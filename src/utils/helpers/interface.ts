@@ -65,6 +65,7 @@ export interface SignUpProps {
 }
 
 export interface LoginProps {
+  state: any,
   email: string;
   onChangeEmail: (email: string) => void;
   isLoading: boolean;

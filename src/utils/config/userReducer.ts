@@ -7,6 +7,7 @@ const initialState = {
   firstName: '',
   lastName: '',
   isSigningUp: false,
+  passwordHash: ''
 };
 
 export const userSlice = createSlice({
@@ -16,7 +17,6 @@ export const userSlice = createSlice({
     updateProfile: (state, action) => ({ ...state, ...action.payload }),
     clearProfile: state => {
       const { firstName, lastName, email } = state;
-
       return {
         ...initialState,
         firstName,
