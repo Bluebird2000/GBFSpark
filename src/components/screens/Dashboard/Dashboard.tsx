@@ -41,7 +41,7 @@ export default function Dashboard({
     <ParentScrollView
       title="GBFS Quiz"
       description="Answer as many as you can in 60 seconds!"
-      containerStyle={{ marginTop: 24 }}
+      containerStyle={{ marginTop: verticalScale(24) }}
     >
       {!hasGameStarted ? (
         <View style={{ marginTop: verticalScale(32) }}>
